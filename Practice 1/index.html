@@ -6,6 +6,10 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <style>
         body {
+            background-image: url("./images/background.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -13,14 +17,9 @@
         }
 
         header {
-            background-color: #292b2c;
             color: white;
             text-align: center;
             padding: 10px;
-        }
-
-        h1 {
-            color: #ff4500;
         }
 
         .FlexDiv {
@@ -59,15 +58,42 @@
         th {
             background-color: #f2f2f2;
         }
+        .button {
+            display: inline-block; 
+            padding: 10px 20px;
+            background-color: #ff4500;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-left: 10px; 
+        }
+        .button:visited {
+            color: pink;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: powderblue; 
+        }
+        .button:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <header id="header">
         <h1>გამარჯობა მე ვარ გიო ჭოლაძე</h1>
-        <a href="https://github.com/giocholadze" style="color: #ff4500; text-decoration: none;">GitHub</a>
-        <p>ტელეფონის ნომერი: 592 00 16 85</p>
+        <p>
+            <span>ტელეფონის ნომერი: 592 00 16 85</span>
+            <a href="https://github.com/giocholadze" class="button">GitHub</a>
+        </p>
     </header>
+
 
     <h2 id="about-me">About Me</h2>
     <p>
