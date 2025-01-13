@@ -1,7 +1,7 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using practice_3.Models;
 
 namespace practice_3.Controllers
@@ -17,22 +17,22 @@ namespace practice_3.Controllers
                 SqlCommand cmd = new SqlCommand("spAddCustomer", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@ShemkvetiID", customer.ShemkvetiID);
-                cmd.Parameters.AddWithValue("@PersonaliID", customer.PersonaliID);
-                cmd.Parameters.AddWithValue("@IuridiuliFizikuri", customer.IuridiuliFizikuri);
-                cmd.Parameters.AddWithValue("@Gvari", customer.Gvari);
-                cmd.Parameters.AddWithValue("@Saxeli", customer.Saxeli);
-                cmd.Parameters.AddWithValue("@Qalaqi", customer.Qalaqi);
-                cmd.Parameters.AddWithValue("@Regioni", customer.Regioni);
-                cmd.Parameters.AddWithValue("@Raioni", customer.Raioni);
-                cmd.Parameters.AddWithValue("@Sqesi", customer.Sqesi);
-                cmd.Parameters.AddWithValue("@Misamarti", customer.Misamarti);
-                cmd.Parameters.AddWithValue("@Mobiluri", customer.Mobiluri);
-                cmd.Parameters.AddWithValue("@FirmisDasaxeleba", customer.FirmisDasaxeleba);
-                cmd.Parameters.AddWithValue("@MobiluriDireqtoris", customer.MobiluriDireqtoris);
-                cmd.Parameters.AddWithValue("@GvariDireqtoris", customer.GvariDireqtoris);
-                cmd.Parameters.AddWithValue("@SabankoAngarishi", customer.SabankoAngarishi);
-                cmd.Parameters.AddWithValue("@Email", customer.Email);
+                cmd.Parameters.AddWithValue("@ShemkvetiID", customer.shemkvetiID);
+                cmd.Parameters.AddWithValue("@PersonaliID", customer.personaliID);
+                cmd.Parameters.AddWithValue("@IuridiuliFizikuri", customer.iuridiuli_fizikuri);
+                cmd.Parameters.AddWithValue("@Gvari", customer.gvari);
+                cmd.Parameters.AddWithValue("@Saxeli", customer.saxeli);
+                cmd.Parameters.AddWithValue("@Qalaqi", customer.qalaqi);
+                cmd.Parameters.AddWithValue("@Regioni", customer.regioni);
+                cmd.Parameters.AddWithValue("@Raioni", customer.raioni);
+                cmd.Parameters.AddWithValue("@Sqesi", customer.sqesi);
+                cmd.Parameters.AddWithValue("@Misamarti", customer.misamarti);
+                cmd.Parameters.AddWithValue("@Mobiluri", customer.mobiluri);
+                cmd.Parameters.AddWithValue("@FirmisDasaxeleba", customer.firmis_dasaxeleba);
+                cmd.Parameters.AddWithValue("@MobiluriDireqtoris", customer.mobiluri_direqtoris);
+                cmd.Parameters.AddWithValue("@GvariDireqtoris", customer.gvari_direqtoris);
+                cmd.Parameters.AddWithValue("@SabankoAngarishi", customer.sabanko_angarishi);
+                cmd.Parameters.AddWithValue("@Email", customer.email);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -47,22 +47,22 @@ namespace practice_3.Controllers
                 SqlCommand cmd = new SqlCommand("spUpdateCustomer", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@ShemkvetiID", customer.ShemkvetiID);
-                cmd.Parameters.AddWithValue("@PersonaliID", customer.PersonaliID);
-                cmd.Parameters.AddWithValue("@IuridiuliFizikuri", customer.IuridiuliFizikuri);
-                cmd.Parameters.AddWithValue("@Gvari", customer.Gvari);
-                cmd.Parameters.AddWithValue("@Saxeli", customer.Saxeli);
-                cmd.Parameters.AddWithValue("@Qalaqi", customer.Qalaqi);
-                cmd.Parameters.AddWithValue("@Regioni", customer.Regioni);
-                cmd.Parameters.AddWithValue("@Raioni", customer.Raioni);
-                cmd.Parameters.AddWithValue("@Sqesi", customer.Sqesi);
-                cmd.Parameters.AddWithValue("@Misamarti", customer.Misamarti);
-                cmd.Parameters.AddWithValue("@Mobiluri", customer.Mobiluri);
-                cmd.Parameters.AddWithValue("@FirmisDasaxeleba", customer.FirmisDasaxeleba);
-                cmd.Parameters.AddWithValue("@MobiluriDireqtoris", customer.MobiluriDireqtoris);
-                cmd.Parameters.AddWithValue("@GvariDireqtoris", customer.GvariDireqtoris);
-                cmd.Parameters.AddWithValue("@SabankoAngarishi", customer.SabankoAngarishi);
-                cmd.Parameters.AddWithValue("@Email", customer.Email);
+                cmd.Parameters.AddWithValue("@ShemkvetiID", customer.shemkvetiID);
+                cmd.Parameters.AddWithValue("@PersonaliID", customer.personaliID);
+                cmd.Parameters.AddWithValue("@IuridiuliFizikuri", customer.iuridiuli_fizikuri);
+                cmd.Parameters.AddWithValue("@Gvari", customer.gvari);
+                cmd.Parameters.AddWithValue("@Saxeli", customer.saxeli);
+                cmd.Parameters.AddWithValue("@Qalaqi", customer.qalaqi);
+                cmd.Parameters.AddWithValue("@Regioni", customer.regioni);
+                cmd.Parameters.AddWithValue("@Raioni", customer.raioni);
+                cmd.Parameters.AddWithValue("@Sqesi", customer.sqesi);
+                cmd.Parameters.AddWithValue("@Misamarti", customer.misamarti);
+                cmd.Parameters.AddWithValue("@Mobiluri", customer.mobiluri);
+                cmd.Parameters.AddWithValue("@FirmisDasaxeleba", customer.firmis_dasaxeleba);
+                cmd.Parameters.AddWithValue("@MobiluriDireqtoris", customer.mobiluri_direqtoris);
+                cmd.Parameters.AddWithValue("@GvariDireqtoris", customer.gvari_direqtoris);
+                cmd.Parameters.AddWithValue("@SabankoAngarishi", customer.sabanko_angarishi);
+                cmd.Parameters.AddWithValue("@Email", customer.email);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -85,22 +85,22 @@ namespace practice_3.Controllers
 
                 while (rdr.Read())
                 {
-                    customer.ShemkvetiID = rdr["ShemkvetiID"].ToString();
-                    customer.PersonaliID = rdr["PersonaliID"].ToString();
-                    customer.IuridiuliFizikuri = rdr["IuridiuliFizikuri"].ToString();
-                    customer.Gvari = rdr["Gvari"].ToString();
-                    customer.Saxeli = rdr["Saxeli"].ToString();
-                    customer.Qalaqi = rdr["Qalaqi"].ToString();
-                    customer.Regioni = rdr["Regioni"].ToString();
-                    customer.Raioni = rdr["Raioni"].ToString();
-                    customer.Sqesi = rdr["Sqesi"].ToString();
-                    customer.Misamarti = rdr["Misamarti"].ToString();
-                    customer.Mobiluri = rdr["Mobiluri"].ToString();
-                    customer.FirmisDasaxeleba = rdr["FirmisDasaxeleba"].ToString();
-                    customer.MobiluriDireqtoris = rdr["MobiluriDireqtoris"].ToString();
-                    customer.GvariDireqtoris = rdr["GvariDireqtoris"].ToString();
-                    customer.SabankoAngarishi = rdr["SabankoAngarishi"].ToString();
-                    customer.Email = rdr["Email"].ToString();
+                    customer.shemkvetiID = rdr["ShemkvetiID"].ToString();
+                    customer.personaliID = rdr["PersonaliID"].ToString();
+                    customer.iuridiuli_fizikuri = rdr["IuridiuliFizikuri"].ToString();
+                    customer.gvari = rdr["Gvari"].ToString();
+                    customer.saxeli = rdr["Saxeli"].ToString();
+                    customer.qalaqi = rdr["Qalaqi"].ToString();
+                    customer.regioni = rdr["Regioni"].ToString();
+                    customer.raioni = rdr["Raioni"].ToString();
+                    customer.sqesi = rdr["Sqesi"].ToString();
+                    customer.misamarti = rdr["Misamarti"].ToString();
+                    customer.mobiluri = rdr["Mobiluri"].ToString();
+                    customer.firmis_dasaxeleba = rdr["FirmisDasaxeleba"].ToString();
+                    customer.mobiluri_direqtoris = rdr["MobiluriDireqtoris"].ToString();
+                    customer.gvari_direqtoris = rdr["GvariDireqtoris"].ToString();
+                    customer.sabanko_angarishi = rdr["SabankoAngarishi"].ToString();
+                    customer.email = rdr["Email"].ToString();
                 }
 
                 con.Close();
