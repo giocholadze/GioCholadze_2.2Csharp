@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>Pracitce_5</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MyPersonal.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Practice 5.csproj" />
+    <Compile Include="MyPersonal.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+</Project>
