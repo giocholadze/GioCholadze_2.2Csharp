@@ -1,6 +1,6 @@
 ﻿namespace Practice_6.Models
 {
-    public class Event
+    public class Customer
     {
     }
 }
