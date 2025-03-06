@@ -1,4 +1,5 @@
-namespace Pracitce_5
+
+namespace Practice_6
 {
     public class Program
     {
