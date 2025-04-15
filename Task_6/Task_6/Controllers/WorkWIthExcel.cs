@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 
-namespace ExcelImportExport.Controllers
+namespace Practice_7.Controllers
 {
     public class WorkWithExcel<T>
     {
@@ -17,7 +17,7 @@ namespace ExcelImportExport.Controllers
             for (int i = 0; i < properties.Length; i++)
             {
                 var displayNameAttribute = properties[i].GetCustomAttributes(typeof(DisplayNameAttribute), false);
-                string displayName = (displayNameAttribute.Count() != 0) ?
+                string displayName = displayNameAttribute.Count() != 0 ?
                                      (displayNameAttribute[0] as DisplayNameAttribute).DisplayName : properties[0].Name;
                 ws.Cell(1, i + 1).Value = displayName;
                 ws.Cell(1, i + 1).Style.Font.Bold = true;

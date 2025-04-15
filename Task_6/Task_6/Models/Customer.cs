@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ClosedXML.Excel;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace Practice_7.Models
@@ -10,6 +11,7 @@ namespace Practice_7.Models
 
         [JsonProperty("id")]
         public int id { get; set; }
+        public XLCellValue CustomerId { get; internal set; }
     }
 }
 

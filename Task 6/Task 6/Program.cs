@@ -1,23 +1,18 @@
-
-using Task_6.Services;
-
 namespace Task_6
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine(":)");
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddScoped<OrderService>(provider => new OrderService("shekvetaDB"));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(); 
-            builder.Services.AddScoped<OrderService>(provider =>
-                new OrderService(builder.Configuration.GetConnectionString("ShekvetaDB")));
 
             var app = builder.Build();
 
