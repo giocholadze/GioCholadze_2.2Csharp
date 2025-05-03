@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ClosedXML.Excel;
-using Practice5.Models; 
-using ExcelImportExport.Controllers; 
+using Practice5.Models;
+using ExcelImportExport.Controllers;
 
 namespace Practice._5.Controllers
 {
@@ -29,7 +29,9 @@ namespace Practice._5.Controllers
                 workbook.SaveAs(stream);
                 stream.Position = 0;
 
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees.xlsx");
+                return File(stream.ToArray(),
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            "Employees.xlsx");
             }
         }
     }

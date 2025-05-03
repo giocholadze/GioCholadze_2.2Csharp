@@ -1,6 +1,5 @@
 using ClosedXML.Excel;
 using System.ComponentModel;
-using System.Drawing;
 using System.Reflection;
 
 namespace ExcelImportExport.Controllers
@@ -9,7 +8,6 @@ namespace ExcelImportExport.Controllers
     {
         public IXLWorksheet AddHeader(XLWorkbook wb, List<T> objs)
         {
-
             T obj = objs.FirstOrDefault();
             var ws = wb.Worksheets.Add(obj.GetType().Name).SetTabColor(XLColor.Green);
             PropertyInfo[] properties = obj.GetType().GetProperties();
@@ -17,44 +15,38 @@ namespace ExcelImportExport.Controllers
             for (int i = 0; i < properties.Length; i++)
             {
                 var displayNameAttribute = properties[i].GetCustomAttributes(typeof(DisplayNameAttribute), false);
-                string displayName = (displayNameAttribute.Count() != 0) ?
-                                     (displayNameAttribute[0] as DisplayNameAttribute).DisplayName : properties[0].Name;
+                string displayName = (displayNameAttribute.Length != 0)
+                    ? ((DisplayNameAttribute)displayNameAttribute[0]).DisplayName
+                    : properties[i].Name;
+
                 ws.Cell(1, i + 1).Value = displayName;
                 ws.Cell(1, i + 1).Style.Font.Bold = true;
             }
 
             return ws;
-
         }
+
         public IXLWorksheet AddBody(IXLWorksheet ws, List<T> objs)
         {
-            T obj = objs.FirstOrDefault();
-            int properties = obj.GetType().GetProperties().Length;
-            string previousValue = string.Empty;
-
-            for (int i = 0; i < objs.Count(); i++)
+            for (int i = 0; i < objs.Count; i++)
             {
-                Type myType = objs[i].GetType();
-                PropertyInfo[] props = myType.GetProperties();
-
-                for (int j = 0; j < properties; j++)
+                PropertyInfo[] props = objs[i].GetType().GetProperties();
+                for (int j = 0; j < props.Length; j++)
                 {
-                    PropertyInfo prop = props[j];
-                    string propValue = prop.GetValue(objs[i], null).ToString();
-                    ws.Cell(2 + i, j + 1).Value = propValue;
+                    var propValue = props[j].GetValue(objs[i], null);
+                    ws.Cell(2 + i, j + 1).Value = propValue?.ToString() ?? string.Empty;
                 }
             }
+
             return ws;
         }
+
         public XLWorkbook Generate(List<T> objs)
         {
-            // Workbook creation.
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                var ws = AddHeader(wb, objs);
-                ws = AddBody(ws, objs);
-                return wb;
-            }
+            XLWorkbook wb = new XLWorkbook();
+            var ws = AddHeader(wb, objs);
+            ws = AddBody(ws, objs);
+            return wb;
         }
     }
 }

@@ -16,12 +16,13 @@ namespace Task_6.Controllers
     [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
-        
-        private readonly string _connectionString;
 
+        private readonly string _connectionString;
+        private readonly IConfiguration configuration;
         public OrdersController(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("ShekvetaDB");
+            this.configuration = configuration;
+            _connectionString = this.configuration.GetConnectionString("ShekvetaDB");
         }
 
         [HttpGet("ExportData")]
@@ -37,49 +38,49 @@ namespace Task_6.Controllers
             List<Order> orders = new List<Order>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
+
             {
+                connection.Open();
                 string query = @"
                     SELECT 
                         xelshekrulebaID, shemkvetiID, gadasaxdeli_l, gadasaxdeli_d, 
                         gadaxdili_l, gadaxdili_d, vali_l, vali_d, kursi, 
                         tarigi_dawyebis, tarigi_shesrulebis, tarigi_damtavrebis, 
                         shesruleba, visi_mizezit
-                    FROM Orders
+                    FROM Xelshekruleba
                     WHERE tarigi_damtavrebis IS NULL OR tarigi_damtavrebis = ''";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    var order = new Order
                     {
-                        var order = new Order
-                        {
-                            xelshekrulebaID = reader["xelshekrulebaID"].ToString(),
-                            shemkvetiID = reader["shemkvetiID"].ToString(),
-                            gadasaxdeli_l = reader["gadasaxdeli_l"].ToString(),
-                            gadasaxdeli_d = reader["gadasaxdeli_d"].ToString(),
-                            gadaxdili_l = reader["gadaxdili_l"].ToString(),
-                            gadaxdili_d = reader["gadaxdili_d"].ToString(),
-                            vali_l = reader["vali_l"].ToString(),
-                            vali_d = reader["vali_d"].ToString(),
-                            kursi = reader["kursi"].ToString(),
-                            shesruleba = reader["shesruleba"].ToString(),
-                            visi_mizezit = reader["visi_mizezit"].ToString()
-                        };
+                        xelshekrulebaID = reader["xelshekrulebaID"].ToString(),
+                        shemkvetiID = reader["shemkvetiID"].ToString(),
+                        gadasaxdeli_l = reader["gadasaxdeli_l"].ToString(),
+                        gadasaxdeli_d = reader["gadasaxdeli_d"].ToString(),
+                        gadaxdili_l = reader["gadaxdili_l"].ToString(),
+                        gadaxdili_d = reader["gadaxdili_d"].ToString(),
+                        vali_l = reader["vali_l"].ToString(),
+                        vali_d = reader["vali_d"].ToString(),
+                        kursi = reader["kursi"].ToString(),
+                        shesruleba = reader["shesruleba"].ToString(),
+                        visi_mizezit = reader["visi_mizezit"].ToString()
+                    };
 
-                        DateTime? tarigiDawyebis = reader["tarigi_dawyebis"] as DateTime?;
-                        DateTime? tarigiShesrulebis = reader["tarigi_shesrulebis"] as DateTime?;
-                        DateTime? tarigiDamtavrebis = reader["tarigi_damtavrebis"] as DateTime?;
+                    DateTime? tarigiDawyebis = reader["tarigi_dawyebis"] as DateTime?;
+                    DateTime? tarigiShesrulebis = reader["tarigi_shesrulebis"] as DateTime?;
+                    DateTime? tarigiDamtavrebis = reader["tarigi_damtavrebis"] as DateTime?;
 
-                        if (tarigiShesrulebis.HasValue)
-                        {
-                            tarigiShesrulebis = new DateTime(DateTime.Now.Year, tarigiShesrulebis.Value.Month, tarigiShesrulebis.Value.Day);
-                        }
-
-                        orders.Add(order);
+                    if (tarigiShesrulebis.HasValue)
+                    {
+                        tarigiShesrulebis = new DateTime(DateTime.Now.Year, tarigiShesrulebis.Value.Month, tarigiShesrulebis.Value.Day);
                     }
+
+                    orders.Add(order);
+
                 }
             }
 

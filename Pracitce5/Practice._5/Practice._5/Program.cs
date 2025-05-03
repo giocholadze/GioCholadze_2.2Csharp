@@ -1,4 +1,6 @@
 
+using ExcelImportExport.Controllers;
+
 namespace Practice._5
 {
     public class Program
@@ -13,6 +15,8 @@ namespace Practice._5
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped(typeof(WorkWithExcel<>));
 
             var app = builder.Build();
 
