@@ -1,0 +1,164 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var featuredNews = ViewBag.FeaturedNews as NewsItem;
+    var recentNews = ViewBag.RecentNews as List<NewsItem>;
+    var upcomingMatches = ViewBag.UpcomingMatches as List<MatchFixture>;
+}
+
+<div class="container py-4">
+    <!-- Hero Section -->
+    @if (featuredNews != null)
+    {
+        <div class="hero-section mb-5">
+            <div class="hero-image">
+                <img src="@(featuredNews.ImageUrl ?? "/images/placeholder-hero.jpg")" alt="@featuredNews.Title" class="img-fluid">
+                <div class="hero-badge">@featuredNews.Category</div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">@featuredNews.Title</h1>
+                <p class="hero-excerpt">@featuredNews.Excerpt</p>
+                <div class="hero-meta mb-3">
+                    <span class="text-muted">
+                        <i class="fas fa-user me-1"></i>@featuredNews.Author
+                    </span>
+                    <span class="text-muted ms-3">
+                        <i class="fas fa-calendar me-1"></i>@featuredNews.PublishedDate.ToString("MMM dd, yyyy")
+                    </span>
+                    <span class="text-muted ms-3">
+                        <i class="fas fa-eye me-1"></i>@featuredNews.ViewCount views
+                    </span>
+                </div>
+                <a href="@Url.Action("Details", "News", new { id = featuredNews.Id })" class="btn btn-primary hero-btn">Read More</a>
+            </div>
+        </div>
+    }
+
+    <!-- Category Buttons -->
+    <div class="category-buttons mb-5">
+        <button class="btn category-btn active" data-category="Women's Team">Women's Team</button>
+        <button class="btn category-btn" data-category="Men's Team">Men's Team</button>
+        <button class="btn category-btn" data-category="Youth Team">Youth Team</button>
+        <button class="btn category-btn" data-category="All">All News</button>
+    </div>
+
+    <!-- Upcoming Matches -->
+    @if (upcomingMatches != null && upcomingMatches.Any())
+    {
+        <section class="upcoming-matches mb-5">
+            <h2 class="section-title mb-4">
+                <i class="fas fa-calendar-alt me-2"></i>Upcoming Matches
+            </h2>
+            <div class="row">
+                @foreach (var match in upcomingMatches)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="match-card">
+                            <div class="match-header">
+                                <div class="date-badge">
+                                    <div class="day">@match.MatchDate.Day</div>
+                                    <div class="month">@match.MatchDate.ToString("MMM").ToUpper()</div>
+                                </div>
+                                <div class="match-time">@match.MatchDate.ToString("HH:mm")</div>
+                            </div>
+                            <div class="match-type">@match.MatchType</div>
+                            <div class="match-teams">
+                                <div class="team">
+                                    <div class="team-logo"></div>
+                                    <div class="team-name">@match.HomeTeam</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo"></div>
+                                    <div class="team-name">@match.AwayTeam</div>
+                                </div>
+                            </div>
+                            <div class="match-venue">
+                                <i class="fas fa-map-marker-alt me-1"></i>@match.Venue
+                            </div>
+                            <button class="btn btn-primary match-btn w-100" onclick="SportsWebsite.bookTickets(@match.Id)">
+                                <i class="fas fa-ticket-alt me-2"></i>Buy Tickets
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    <!-- Latest News Section -->
+    <section class="latest-news">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title">
+                <i class="fas fa-newspaper me-2"></i>Latest News
+            </h2>
+            <div class="news-controls">
+                <a href="@Url.Action("Index", "News")" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-list me-1"></i>View All
+                </a>
+                <button class="btn btn-outline-secondary btn-sm" onclick="SportsWebsite.showNewsModal()">
+                    <i class="fas fa-filter me-1"></i>Filter
+                </button>
+            </div>
+        </div>
+
+        <div class="news-grid" id="newsContainer">
+            @if (recentNews != null)
+            {
+                @for (int i = 0; i < recentNews.Count; i++)
+                {
+                    var article = recentNews[i];
+                    var animationDelay = i * 0.2;
+
+                    <div class="news-card fade-in" style="animation-delay: @(animationDelay)s" data-category="@article.Category">
+                        <div class="news-image">
+                            <img src="@(article.ImageUrl ?? "/images/placeholder-news.jpg")" alt="@article.Title" class="img-fluid">
+                            <div class="news-date-badge">
+                                <div class="day">@article.PublishedDate.Day</div>
+                                <div class="month">@article.PublishedDate.ToString("MMM").ToUpper()</div>
+                            </div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-category">@article.Category</div>
+                            <h3 class="news-title">@article.Title</h3>
+                            <p class="news-excerpt">@article.Excerpt</p>
+                            <div class="news-meta">
+                                <div class="news-author">
+                                    <i class="fas fa-user me-1"></i>@article.Author
+                                </div>
+                                <div class="news-views">
+                                    <i class="fas fa-eye me-1"></i><span class="view-count">@article.ViewCount</span>
+                                </div>
+                            </div>
+                            <a href="@Url.Action("Details", "News", new { id = article.Id })"
+                               class="btn btn-sm btn-outline-primary news-read-btn"
+                               onclick="SportsWebsite.trackNewsView(@article.Id, @article.ViewCount)">
+                                Read More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+
+    <!-- Team Navigation -->
+    <div class="team-navigation mt-5">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <a href="@Url.Action("MensLeague")" class="btn btn-outline-primary w-100 team-nav-btn">
+                    <i class="fas fa-users me-2"></i>Men's League
+                </a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="@Url.Action("WomensLeague")" class="btn btn-outline-primary w-100 team-nav-btn">
+                    <i class="fas fa-users me-2"></i>Women's League
+                </a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="@Url.Action("YouthLeague")" class="btn btn-outline-primary w-100 team-nav-btn">
+                    <i class="fas fa-child me-2"></i>Youth League
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

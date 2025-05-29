@@ -1,0 +1,124 @@
+﻿@model List<SportsWebsite.Models.NewsItem>
+
+<!-- News Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsModalLabel">
+                    <i class="fas fa-newspaper me-2"></i>Latest News
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-outline-primary btn-sm category-btn active" data-category="All">
+                                All Categories
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm category-btn" data-category="Men's Team">
+                                Men's Team
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm category-btn" data-category="Women's Team">
+                                Women's Team
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm category-btn" data-category="Youth Team">
+                                Youth Team
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm category-btn" data-category="General">
+                                General
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="modalNewsContainer">
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var article in Model.Take(6))
+                        {
+                            <div class="col-md-6 col-lg-4 mb-4 news-modal-item" data-category="@article.Category">
+                                <div class="card h-100 news-modal-card">
+                                    <div class="position-relative">
+                                        <img src="@(article.ImageUrl ?? "/images/placeholder-news.jpg")"
+                                             class="card-img-top news-modal-image"
+                                             alt="@article.Title"
+                                             style="height: 180px; object-fit: cover;">
+                                        <div class="position-absolute top-0 start-0 m-2">
+                                            <span class="badge bg-primary">@article.Category</span>
+                                        </div>
+                                        <div class="position-absolute top-0 end-0 m-2 bg-danger text-white px-2 py-1 rounded">
+                                            <small class="fw-bold">@article.PublishedDate.Day</small><br>
+                                            <small style="font-size: 0.7rem;">@article.PublishedDate.ToString("MMM").ToUpper()</small>
+                                        </div>
+                                    </div>
+                                    <div class="card-body d-flex flex-column">
+                                        <h6 class="card-title fw-bold">@article.Title</h6>
+                                        <p class="card-text text-muted small flex-grow-1">
+                                            @(article.Excerpt.Length > 100 ? article.Excerpt.Substring(0, 100) + "..." : article.Excerpt)
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                                            <small class="text-muted">
+                                                <i class="fas fa-user me-1"></i>@article.Author
+                                            </small>
+                                            <small class="text-muted">
+                                                <i class="fas fa-eye me-1"></i>@article.ViewCount
+                                            </small>
+                                        </div>
+                                        <div class="mt-2">
+                                            <a href="@Url.Action("Details", "News", new { id = article.Id })"
+                                               class="btn btn-outline-primary btn-sm w-100">
+                                                Read More <i class="fas fa-arrow-right ms-1"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No news articles available</h5>
+                            <p class="text-muted">Check back later for updates.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index", "News")" class="btn btn-primary">
+                    View All News <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .news-modal-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--border-color);
+    }
+
+        .news-modal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .news-modal-image {
+        transition: transform 0.3s ease;
+    }
+
+    .news-modal-card:hover .news-modal-image {
+        transform: scale(1.05);
+    }
+
+    .category-btn.active {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+    }
+</style>

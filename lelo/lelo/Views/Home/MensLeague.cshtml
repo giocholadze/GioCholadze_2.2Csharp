@@ -1,0 +1,392 @@
+﻿@{
+    ViewData["Title"] = "Men's League";
+    var mensNews = ViewBag.MensNews as List<NewsItem>;
+}
+
+<div class="container py-4">
+    <div class="page-header mb-5">
+        <div class="d-flex align-items-center mb-3">
+            <div class="page-icon me-3">
+                <i class="fas fa-users"></i>
+            </div>
+            <div>
+                <h1 class="page-title mb-1">Men's League</h1>
+                <p class="page-subtitle">Follow all the action from LELO Rugby Club</p>
+            </div>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index")">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Men's League</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- League Content Sections -->
+    <div id="leagueContent">
+        <!-- Premier League Content -->
+        <div class="league-section" id="league-premier">
+            <div class="league-header mb-4">
+                <h2 class="league-title">უმაღლესი ლიგა</h2>
+                <p class="league-description">საქართველოს რაგბის უმაღლესი ლიგა - ელიტური დივიზია</p>
+            </div>
+
+            <!-- Quick Stats for Premier League -->
+            <div class="row mb-5">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">18</h3>
+                            <p class="stat-label">ჩატარებული მატჩები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">4</h3>
+                            <p class="stat-label">მომავალი მატჩები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">8</h3>
+                            <p class="stat-label">გუნდები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">1st</h3>
+                            <p class="stat-label">პოზიცია</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premier League News -->
+            <section class="team-news">
+                <h3 class="section-title mb-4">
+                    <i class="fas fa-newspaper me-2"></i>უმაღლესი ლიგის სიახლეები
+                </h3>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="/images/placeholder-news.jpg" alt="Premier League News" class="img-fluid">
+                            <div class="news-date-badge">
+                                <div class="day">15</div>
+                                <div class="month">იან</div>
+                            </div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-category">უმაღლესი ლიგა</div>
+                            <h3 class="news-title">ჩემპიონატის ბრძოლა მწვავდება</h3>
+                            <p class="news-excerpt">უმაღლესი ლიგის წამყვან გუნდებს შორის მხოლოდ 3 ქულა არის განსხვავება...</p>
+                            <div class="news-meta">
+                                <div class="news-author">
+                                    <i class="fas fa-user me-1"></i>სპორტული რეპორტიორი
+                                </div>
+                                <div class="news-views">
+                                    <i class="fas fa-eye me-1"></i>1250
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-primary news-read-btn">
+                                ვრცლად <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Youth A League Content -->
+        <div class="league-section" id="league-youth-a" style="display: none;">
+            <div class="league-header mb-4">
+                <h2 class="league-title">ჭაბუკთა "ა" ლიგა</h2>
+                <p class="league-description">18 წლამდე ასაკის ჭაბუკთა ელიტური ლიგა</p>
+            </div>
+
+            <!-- Quick Stats for Youth A -->
+            <div class="row mb-5">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">24</h3>
+                            <p class="stat-label">აკადემიის მოთამაშეები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">6</h3>
+                            <p class="stat-label">მოგებული ტურნირები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">8</h3>
+                            <p class="stat-label">ასული მოთამაშეები</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">6</h3>
+                            <p class="stat-label">გუნდები</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Youth A News -->
+            <section class="team-news">
+                <h3 class="section-title mb-4">
+                    <i class="fas fa-newspaper me-2"></i>ჭაბუკთა "ა" ლიგის სიახლეები
+                </h3>
+                <div class="news-articles">
+                    <!-- First News Article -->
+                    <div class="expandable-news-card mb-4" data-article-id="youth-a-1">
+                        <div class="news-card-content">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="news-category-badge mb-3">
+                                        <span class="badge bg-primary">ჭაბუკთა "ა" ლიგა</span>
+                                    </div>
+                                    <h3 class="news-article-title mb-3">ჭაბუკთა 'ა' ლიგა | 'ლელომ' ტიტული უმძიმეს ბრძოლაში დაიცვა</h3>
+
+                                    <div class="news-content">
+                                        <p class="news-excerpt">
+                                            ბოლო 10 წლის მანძილზე უფროსი ასაკის ჭაბუკ მორაგბეთა პირველობის ტიტულის მფლობელს 'აია'-'ლელოს' რიგით მე-8 დაპირისპირება (მათ შორის ფინალში მეოთხედ) არკვევდა...
+                                        </p>
+
+                                        <div class="expandable-content" style="display: none;">
+                                            <p>
+                                                აღნიშნულ პერიოდში დიდ დიღმელები 6-ჯერ გახდნენ ჩემპიონები (ერთხელ ფინალში 'ხვამლს' მოუგეს), 'აიამ' კი ტიტულის მოპოვება 2-ჯერ მოახერხა.
+                                            </p>
+                                            <p>
+                                                უკვე მრავალი წელია, რაც 'ლელო' საქართველოს ახალგაზრდული და ეროვნული ნაკრების მთავარ დონორს წარმოადგენს. ქართული რაგბის ბერმუხა ბათუ (ვასილ) კევლიშვილის დიდი ძალისხმევითა და თაოსნობით, 'ლელოს' რაგბის აკადემიაში მიმდინარე გამართულმა, საათივით აწყობილმა, უამრავი ინოვაციით გაჯერებულმა საწვრთნელო პროცესმა დიდ დიღმელებს ჭაბუკ მორაგბეთა ორივე ასაკის პირველობებზე პრაქტიკულად ჰეგემონია დაამყარებინა.
+                                            </p>
+                                            <p>
+                                                2 კვირის წინ, სამხრეთ აფრიკის 20 წლამდე ნაკრებთან გამართულ ამხანაგურ შეხვედრებში საქართველოს ახალგაზრდული ნაკრების დამრიგებელმა ლადო კილასონიამ სამონაწილეოდ 'ლელოს' 10 მორაგბეს უხმო, რომელთაც 'ლელოს' აკადემიის აღზრდილი არაერთი ლეგიონერიც შეემათ.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="news-meta d-flex justify-content-between align-items-center mt-3">
+                                        <div class="d-flex gap-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-user me-1"></i>სპორტული რეპორტიორი
+                                            </span>
+                                            <span class="text-muted small">
+                                                <i class="fas fa-eye me-1"></i>1850
+                                            </span>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm expand-btn">
+                                            <span class="expand-text">ვრცლად</span>
+                                            <i class="fas fa-chevron-down ms-1 expand-icon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="news-images">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4bebcd1a-e285-44dd-9d18-e67be8b94575.jpg-lPuPFwmePbLuJFxxjut63NadgkFNnw.jpeg" alt="ჭაბუკთა ა ლიგის ჩემპიონები" class="img-fluid rounded mb-3">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9effce02-587b-4035-8ef7-61fd1783116f.jpg-kpK6e6CFxpZ4lZRbVHKiM4oRFSiHVe.jpeg" alt="ჭაბუკთა ა ლიგის ჩემპიონები" class="img-fluid rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second News Article -->
+                    <div class="expandable-news-card mb-4" data-article-id="youth-a-2">
+                        <div class="news-card-content">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="news-category-badge mb-3">
+                                        <span class="badge bg-primary">ჭაბუკთა "ა" ლიგა</span>
+                                    </div>
+                                    <h3 class="news-article-title mb-3">ლელო ჭაბუკთა "ა" ლიგის 7 კაცა ტურნირის გამარჯვებულია</h3>
+
+                                    <div class="news-content">
+                                        <p class="news-excerpt">
+                                            12 აპრილს ლოკომოტივის ბაზაზე გაიმართა ჭაბუკთა "ა" ლიგის 7 კაცა ტურნირი სადაც გამარჯვებული, საქართველოს ჩემპიონი ხორბალაძე-შანიძის გუნდმა გახდა.
+                                        </p>
+                                    </div>
+
+                                    <div class="news-meta d-flex justify-content-between align-items-center mt-3">
+                                        <div class="d-flex gap-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-user me-1"></i>ტურნირის ორგანიზატორები
+                                            </span>
+                                            <span class="text-muted small">
+                                                <i class="fas fa-eye me-1"></i>920
+                                            </span>
+                                        </div>
+                                        <a href="@Url.Action("Details", "News", new { id = 6 })" class="btn btn-outline-primary btn-sm">
+                                            ვრცლად <i class="fas fa-arrow-right ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="news-images">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1fd63848-f6b3-4c77-9efa-9cff3663dc6c.jpg-CqcaMUcbbEF3vXtVeUoF0xFPDleh0O.jpeg" alt="7 კაცა ტურნირის გამარჯვებული გუნდი" class="img-fluid rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Espuarta League Content -->
+        <div class="league-section" id="league-espuarta" style="display: none;">
+            <div class="league-header mb-4">
+                <h2 class="league-title">ესპუართა ლიგა</h2>
+                <p class="league-description">ესპუართა ლიგის ჩემპიონატი და ტურნირები</p>
+            </div>
+
+            <!-- Quick Stats for Espuarta -->
+            <div class="row mb-5">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">1</h3>
+                            <p class="stat-label">ჩემპიონობა</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">38:20</h3>
+                            <p class="stat-label">ფინალის ანგარიში</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">3 მაისი</h3>
+                            <p class="stat-label">ფინალის თარიღი</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">ავჭალა</h3>
+                            <p class="stat-label">ფინალის ადგილი</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Espuarta League News -->
+            <section class="team-news">
+                <h3 class="section-title mb-4">
+                    <i class="fas fa-newspaper me-2"></i>ესპუართა ლიგის სიახლეები
+                </h3>
+                <div class="news-articles">
+                    <div class="expandable-news-card mb-4" data-article-id="espuarta-1">
+                        <div class="news-card-content">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="news-category-badge mb-3">
+                                        <span class="badge bg-primary">ესპუართა ლიგა</span>
+                                    </div>
+                                    <h3 class="news-article-title mb-3">ლელო ესპუართა ლიგის ჩემპიონია</h3>
+
+                                    <div class="news-content">
+                                        <p class="news-excerpt">
+                                            3 მაისს, ავჭალის სარაგბო სტადიონზე ესპუართა ლიგის ფინალური შეხვედრა "ბათუმთან" გვქონდა სადაც მეტოქე ანგარიშით 38:20 დავამარცხეთ და ესპუართა ლიგის ჩემპიონობა მინიმუმ ერთი წლით გავიხანგრძლივეთ.
+                                        </p>
+
+                                        <div class="expandable-content" style="display: none;">
+                                            <p>
+                                                ესპუართა ლიგის ფინალში უფროსებთან ერთად მონაწილეობა მიიღეს ახალგაზრდა მორაგბეებმაც რომლებიც მომავალი წლიდან კაცთა ლიგაში იასპარეზებენ.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="news-meta d-flex justify-content-between align-items-center mt-3">
+                                        <div class="d-flex gap-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-user me-1"></i>კლუბის ადმინისტრაცია
+                                            </span>
+                                            <span class="text-muted small">
+                                                <i class="fas fa-eye me-1"></i>1340
+                                            </span>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm expand-btn">
+                                            <span class="expand-text">ვრცლად</span>
+                                            <i class="fas fa-chevron-down ms-1 expand-icon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="news-images">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/a7818084-195b-47f1-b81d-988d070f9d7d.jpg-2XJwiAEI3Ai6oRta4QmmPa1LY1SYjU.jpeg" alt="ესპუართა ლიგის ჩემპიონები - გუნდური ფოტო" class="img-fluid rounded mb-3">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2244cb64-2a8e-4bfe-8448-442bbf6cde86.jpg-dofr3r9DWGOyiapOa3NbaXd4Z2Utwj.jpeg" alt="ესპუართა ლიგის მატჩის მომენტი" class="img-fluid rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Other league sections would continue here... -->
+        <!-- Festival, Academy, Gallery, About sections -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // League tab switching and expandable articles functionality will be in site.js
+    </script>
+}

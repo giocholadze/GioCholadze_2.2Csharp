@@ -1,0 +1,90 @@
+﻿@model SportsWebsite.Models.NewsItem
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "News")">News</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+                </ol>
+            </nav>
+
+            <!-- Article Header -->
+            <article class="news-article">
+                <div class="article-header mb-4">
+                    <span class="badge bg-danger mb-3">@Model.Category</span>
+                    <h1 class="article-title mb-4">@Model.Title</h1>
+                    <div class="article-meta d-flex flex-wrap gap-3 text-muted mb-4">
+                        <span>
+                            <i class="fas fa-user me-1"></i>@Model.Author
+                        </span>
+                        <span>
+                            <i class="fas fa-calendar me-1"></i>@Model.PublishedDate.ToString("MMMM dd, yyyy")
+                        </span>
+                        <span>
+                            <i class="fas fa-clock me-1"></i>@Model.PublishedDate.ToString("HH:mm")
+                        </span>
+                        <span>
+                            <i class="fas fa-eye me-1"></i><span id="viewCount">@Model.ViewCount</span> views
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Article Image -->
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <div class="article-image mb-4">
+                        <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded">
+                    </div>
+                }
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    <div class="lead mb-4">@Model.Excerpt</div>
+                    <div class="article-body">
+                        @foreach (var paragraph in Model.Content.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <p>@paragraph</p>
+                        }
+                    </div>
+                </div>
+
+                <!-- Article Footer -->
+                <div class="article-footer d-flex justify-content-between align-items-center py-4 border-top mt-5">
+                    <a href="@Url.Action("Index", "News")" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to News
+                    </a>
+                    <div class="share-buttons">
+                        <span class="text-muted me-2">Share:</span>
+                        <button class="btn btn-outline-primary btn-sm" onclick="SportsWebsite.shareArticle('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="btn btn-outline-info btn-sm" onclick="SportsWebsite.shareArticle('twitter')">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="SportsWebsite.shareArticle('whatsapp')">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Track article view
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof SportsWebsite !== 'undefined' && SportsWebsite.trackNewsView) {
+                SportsWebsite.trackNewsView(@Model.Id, @Model.ViewCount);
+            }
+        });
+    </script>
+}
