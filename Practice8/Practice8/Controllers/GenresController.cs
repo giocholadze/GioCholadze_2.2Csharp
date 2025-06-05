@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Practice_8.DTOs;
 using Practice_8.Interfaces;
 using Practice_8.Models;
 using Practice_8.Repositories;
@@ -36,7 +37,7 @@ namespace Practice_8.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create(Genre genre)
+        public async Task<IActionResult> Create(GenreDto genre)
         {
             if (!ModelState.IsValid) return View(genre);
             await _genreRepository.AddAsync(genre);
@@ -52,7 +53,7 @@ namespace Practice_8.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Genre genre)
+        public async Task<IActionResult> Edit(GenreDto genre)
         {
             if (!ModelState.IsValid) return View(genre);
             await _genreRepository.UpdateAsync(genre);
