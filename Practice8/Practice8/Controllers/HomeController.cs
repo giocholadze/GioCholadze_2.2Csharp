@@ -1,7 +1,32 @@
-using MediatR;
-using Practice_8.DTOs;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Practice8.Models;
 
-namespace Practice_8.CQRS.Genre.Commands
+namespace Practice8.Controllers
 {
-    public record CreateGenreCommand(GenreDto Genre) : IRequest;
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
 }

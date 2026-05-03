@@ -1,18 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Practice_8.Models
+namespace Practice8.Models
 {
-    public class Music
+    public class ErrorViewModel
     {
-        public int Id { get; set; }
+        public string? RequestId { get; set; }
 
-        [Required]
-        public string Title { get; set; }
-
-        [ForeignKey("Genre")]
-        public int GenreId { get; set; }
-
-        public Genre Genre { get; set; }
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
